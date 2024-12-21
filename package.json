@@ -1,0 +1,23 @@
+{
+  "name": "climbguide-plugin",
+  "version": "1.0.0",
+  "main": "build/index.js",
+  "scripts": {
+    "start": "wp-scripts start",
+    "build": "wp-scripts build",
+    "format": "wp-scripts format",
+    "lint:css": "wp-scripts lint-style",
+    "lint:js": "wp-scripts lint-js",
+    "lint:php": "composer run-script lint",
+    "format:php": "composer run-script format"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@wordpress/scripts": "^30.7.0",
+    "eslint": "^8.57.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-wordpress": "^17.0.0"
+  }
+}
