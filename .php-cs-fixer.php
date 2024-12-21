@@ -8,9 +8,10 @@ $finder = PhpCsFixer\Finder::create()
 
 $config = new PhpCsFixer\Config();
 return $config->setRules([
-    '@PSR2' => true,
     'array_syntax' => ['syntax' => 'short'],
     'no_unused_imports' => true,
     'ordered_imports' => true,
+    'indentation_type' => true
 ])
-->setFinder($finder); 
+->setIndent("\t")
+->setFinder($finder);

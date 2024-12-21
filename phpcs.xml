@@ -8,8 +8,18 @@
     <exclude-pattern>/build/*</exclude-pattern>
 
     <arg name="extensions" value="php"/>
+    <arg value="ps"/>
     <arg name="colors"/>
-    <arg value="sp"/>
 
-    <rule ref="WordPress"/>
+    <rule ref="WordPress">
+        <!--<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>-->
+    </rule>
+
+    <rule ref="Generic.Arrays.DisallowShortArraySyntax.Found">
+        <severity>0</severity>
+    </rule>
+
+    <config name="testVersion" value="7.4-"/>
+
+    <arg value="s"/>
 </ruleset> 
