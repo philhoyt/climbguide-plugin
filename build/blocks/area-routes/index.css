@@ -10,4 +10,70 @@
   border: 1px dotted #f00;
 }
 
+.area-routes__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.area-routes__item {
+  margin-bottom: 1rem;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: move;
+}
+.area-routes__item:hover {
+  border-color: #007cba;
+}
+.area-routes__item[aria-disabled=true] {
+  cursor: default;
+  opacity: 0.7;
+}
+.area-routes__item[aria-disabled=true]:hover {
+  border-color: #ddd;
+}
+.area-routes__link {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  text-decoration: none;
+  color: inherit;
+}
+.area-routes__thumbnail {
+  width: 80px;
+  height: 80px;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+.area-routes__thumbnail img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 4px;
+}
+.area-routes__content {
+  flex-grow: 1;
+}
+.area-routes__title {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+}
+.area-routes__difficulty {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  background: #f0f0f0;
+  border-radius: 3px;
+  font-size: 0.9rem;
+}
+.area-routes .components-notice {
+  margin: 0 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.area-routes .components-notice .components-spinner {
+  margin: 0;
+}
+
 /*# sourceMappingURL=index.css.map*/

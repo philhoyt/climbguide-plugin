@@ -50,6 +50,7 @@ class Climb_Guide {
 		add_action( 'init', [ $this, 'register_post_types' ] );
 		add_action( 'init', [ $this, 'register_taxonomies' ] );
 		add_action( 'init', [ $this, 'register_blocks' ] );
+		add_action( 'init', [ $this, 'register_meta' ] );
 	}
 
 	/**
@@ -77,7 +78,7 @@ class Climb_Guide {
 				'has_archive'   => true,
 				'show_in_rest'  => true,
 				'menu_position' => 19,
-				'supports'      => [ 'title', 'editor', 'thumbnail', 'excerpt', 'page-attributes' ],
+				'supports'      => [ 'title', 'editor', 'thumbnail', 'excerpt', 'page-attributes', 'custom-fields' ],
 				'menu_icon'     => 'dashicons-location',
 				'rewrite'       => [
 					'slug'       => 'area',
@@ -405,6 +406,32 @@ class Climb_Guide {
 	public function activate() {
 		$this->migrate_terms_to_posts();
 		flush_rewrite_rules();
+	}
+
+	/**
+	 * Register custom meta fields
+	 */
+	public function register_meta() {
+		register_post_meta(
+			'climbing_area',
+			'_route_order',
+			[
+				'type'          => 'array',
+				'description'   => __( 'Custom order of routes in this area', 'climb-guide' ),
+				'single'        => true,
+				'show_in_rest'  => [
+					'schema' => [
+						'type'  => 'array',
+						'items' => [
+							'type' => 'integer',
+						],
+					],
+				],
+				'auth_callback' => function() {
+					return current_user_can( 'edit_posts' );
+				},
+			]
+		);
 	}
 }
 

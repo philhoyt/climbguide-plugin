@@ -7,3 +7,82 @@
 .wp-block-create-block-area-routes {
 	border: 1px dotted #f00;
 }
+
+.area-routes {
+	&__list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	&__item {
+		margin-bottom: 1rem;
+		background: #fff;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		cursor: move;
+
+		&:hover {
+			border-color: #007cba;
+		}
+
+		&[aria-disabled='true'] {
+			cursor: default;
+			opacity: 0.7;
+
+			&:hover {
+				border-color: #ddd;
+			}
+		}
+	}
+
+	&__link {
+		display: flex;
+		align-items: center;
+		padding: 1rem;
+		text-decoration: none;
+		color: inherit;
+	}
+
+	&__thumbnail {
+		width: 80px;
+		height: 80px;
+		margin-right: 1rem;
+		flex-shrink: 0;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			border-radius: 4px;
+		}
+	}
+
+	&__content {
+		flex-grow: 1;
+	}
+
+	&__title {
+		margin: 0 0 0.5rem;
+		font-size: 1.1rem;
+	}
+
+	&__difficulty {
+		display: inline-block;
+		padding: 0.25rem 0.5rem;
+		background: #f0f0f0;
+		border-radius: 3px;
+		font-size: 0.9rem;
+	}
+
+	.components-notice {
+		margin: 0 0 1rem;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+
+		.components-spinner {
+			margin: 0;
+		}
+	}
+}
