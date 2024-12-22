@@ -1,1 +1,0 @@
-{"php":"8.3.13","version":"3.65.0:v3.65.0#79d4f3e77b250a7d8043d76c6af8f0695e8a469f","indent":"\t","lineEnding":"\n","rules":{"array_syntax":{"syntax":"short"},"no_unused_imports":true,"ordered_imports":true,"indentation_type":true},"hashes":{"climbing-guide.php":"8a615798fcfeb516f03acd196225db7f"}}

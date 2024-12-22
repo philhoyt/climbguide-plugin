@@ -25,53 +25,49 @@ define( 'CLIMBING_GUIDE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 /**
  * Class to initialize the plugin
  */
-class Climb_Guide
-{
+class Climb_Guide {
 	/**
 	 * Constructor.
 	 */
-	public function __construct()
-	{
+	public function __construct() {
 		$this->init();
 	}
 
 	/**
 	 * Initialize the plugin
 	 */
-	private function init()
-	{
-		// Add hooks here
-		add_action('init', [ $this, 'register_post_types' ]);
-		add_action('init', [ $this, 'register_taxonomies' ]);
-		add_action('init', [ $this, 'register_blocks' ]);
+	private function init() {
+		// Add hooks here.
+		add_action( 'init', [ $this, 'register_post_types' ] );
+		add_action( 'init', [ $this, 'register_taxonomies' ] );
+		// dd_action( 'init', [ $this, 'register_blocks' ] );
 	}
 
 	/**
 	 * Register custom post types
 	 */
-	public function register_post_types()
-	{
+	public function register_post_types() {
 		register_post_type(
 			'climbing_route',
 			[
-				'labels'              => [
-					'name'               => __('Routes', 'climbing-guide'),
-					'singular_name'      => __('Route', 'climbing-guide'),
-					'add_new'           => __('Add New Route', 'climbing-guide'),
-					'add_new_item'      => __('Add New Route', 'climbing-guide'),
-					'edit_item'         => __('Edit Route', 'climbing-guide'),
-					'new_item'          => __('New Route', 'climbing-guide'),
-					'view_item'         => __('View Route', 'climbing-guide'),
-					'search_items'      => __('Search Routes', 'climbing-guide'),
-					'not_found'         => __('No routes found', 'climbing-guide'),
-					'not_found_in_trash'=> __('No routes found in trash', 'climbing-guide'),
+				'labels'       => [
+					'name'               => __( 'Routes', 'climbing-guide' ),
+					'singular_name'      => __( 'Route', 'climbing-guide' ),
+					'add_new'            => __( 'Add New Route', 'climbing-guide' ),
+					'add_new_item'       => __( 'Add New Route', 'climbing-guide' ),
+					'edit_item'          => __( 'Edit Route', 'climbing-guide' ),
+					'new_item'           => __( 'New Route', 'climbing-guide' ),
+					'view_item'          => __( 'View Route', 'climbing-guide' ),
+					'search_items'       => __( 'Search Routes', 'climbing-guide' ),
+					'not_found'          => __( 'No routes found', 'climbing-guide' ),
+					'not_found_in_trash' => __( 'No routes found in trash', 'climbing-guide' ),
 				],
-				'public'              => true,
-				'has_archive'         => true,
-				'show_in_rest'        => true,
-				'supports'            => [ 'title', 'editor', 'thumbnail', 'excerpt' ],
-				'menu_icon'           => 'dashicons-admin-site',
-				'rewrite'             => [ 'slug' => 'routes' ],
+				'public'       => true,
+				'has_archive'  => true,
+				'show_in_rest' => true,
+				'supports'     => [ 'title', 'editor', 'thumbnail', 'excerpt' ],
+				'menu_icon'    => 'dashicons-admin-site',
+				'rewrite'      => [ 'slug' => 'routes' ],
 			]
 		);
 	}
@@ -79,24 +75,23 @@ class Climb_Guide
 	/**
 	 * Register custom taxonomies
 	 */
-	public function register_taxonomies()
-	{
+	public function register_taxonomies() {
 		register_taxonomy(
 			'climbing_area',
 			'climbing_route',
 			[
 				'labels'            => [
-					'name'              => __('Climbing Areas', 'climbing-guide'),
-					'singular_name'     => __('Climbing Area', 'climbing-guide'),
-					'search_items'      => __('Search Areas', 'climbing-guide'),
-					'all_items'         => __('All Areas', 'climbing-guide'),
-					'parent_item'       => __('Parent Area', 'climbing-guide'),
-					'parent_item_colon' => __('Parent Area:', 'climbing-guide'),
-					'edit_item'         => __('Edit Area', 'climbing-guide'),
-					'update_item'       => __('Update Area', 'climbing-guide'),
-					'add_new_item'      => __('Add New Area', 'climbing-guide'),
-					'new_item_name'     => __('New Area Name', 'climbing-guide'),
-					'menu_name'         => __('Areas', 'climbing-guide'),
+					'name'              => __( 'Climbing Areas', 'climbing-guide' ),
+					'singular_name'     => __( 'Climbing Area', 'climbing-guide' ),
+					'search_items'      => __( 'Search Areas', 'climbing-guide' ),
+					'all_items'         => __( 'All Areas', 'climbing-guide' ),
+					'parent_item'       => __( 'Parent Area', 'climbing-guide' ),
+					'parent_item_colon' => __( 'Parent Area:', 'climbing-guide' ),
+					'edit_item'         => __( 'Edit Area', 'climbing-guide' ),
+					'update_item'       => __( 'Update Area', 'climbing-guide' ),
+					'add_new_item'      => __( 'Add New Area', 'climbing-guide' ),
+					'new_item_name'     => __( 'New Area Name', 'climbing-guide' ),
+					'menu_name'         => __( 'Areas', 'climbing-guide' ),
 				],
 				'hierarchical'      => true,
 				'show_ui'           => true,
@@ -112,15 +107,15 @@ class Climb_Guide
 			'climbing_route',
 			[
 				'labels'            => [
-					'name'              => __( 'Difficulties', 'climbing-guide' ),
-					'singular_name'     => __( 'Difficulty', 'climbing-guide' ),
-					'search_items'      => __( 'Search Difficulties', 'climbing-guide' ),
-					'all_items'         => __('All Difficulties', 'climbing-guide'),
-					'edit_item'         => __('Edit Difficulty', 'climbing-guide'),
-					'update_item'       => __('Update Difficulty', 'climbing-guide'),
-					'add_new_item'      => __('Add New Difficulty', 'climbing-guide'),
-					'new_item_name'     => __('New Difficulty Name', 'climbing-guide'),
-					'menu_name'         => __('Difficulties', 'climbing-guide'),
+					'name'          => __( 'Difficulties', 'climbing-guide' ),
+					'singular_name' => __( 'Difficulty', 'climbing-guide' ),
+					'search_items'  => __( 'Search Difficulties', 'climbing-guide' ),
+					'all_items'     => __( 'All Difficulties', 'climbing-guide' ),
+					'edit_item'     => __( 'Edit Difficulty', 'climbing-guide' ),
+					'update_item'   => __( 'Update Difficulty', 'climbing-guide' ),
+					'add_new_item'  => __( 'Add New Difficulty', 'climbing-guide' ),
+					'new_item_name' => __( 'New Difficulty Name', 'climbing-guide' ),
+					'menu_name'     => __( 'Difficulties', 'climbing-guide' ),
 				],
 				'hierarchical'      => false,
 				'show_ui'           => true,
@@ -131,14 +126,7 @@ class Climb_Guide
 			]
 		);
 	}
-
-	/**
-	 * Register blocks
-	 */
-	public function register_blocks() {
-		register_block_type( CLIMBING_GUIDE_PLUGIN_DIR . 'build/blocks/area-routes' );
-	}
 }
 
-// Initialize the plugin
+// Initialize the plugin.
 new Climb_Guide();

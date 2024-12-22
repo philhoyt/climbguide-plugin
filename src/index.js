@@ -1,1 +1,0 @@
-import './blocks/area-routes';
