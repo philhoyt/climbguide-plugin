@@ -3,6 +3,9 @@
 	<description>A custom set of code standard rules for WordPress plugins.</description>
 
 	<file>./climb-guide.php</file>
+	<exclude-pattern>aichat-code-block-anysphere://*</exclude-pattern>
+	<exclude-pattern>cpp-ghost-text-preview-widget-anysphere://*</exclude-pattern>
+	<exclude-pattern>composer-code-block-anysphere://*</exclude-pattern>
 	<exclude-pattern>/vendor/*</exclude-pattern>
 	<exclude-pattern>/node_modules/*</exclude-pattern>
 	<exclude-pattern>/build/*</exclude-pattern>

@@ -49,6 +49,7 @@ class Climb_Guide {
 		// Add hooks here.
 		add_action( 'init', [ $this, 'register_post_types' ] );
 		add_action( 'init', [ $this, 'register_taxonomies' ] );
+		add_action( 'init', [ $this, 'register_blocks' ] );
 	}
 
 	/**
@@ -389,6 +390,13 @@ class Climb_Guide {
 			</form>
 		</div>
 		<?php
+	}
+
+	/**
+	 * Register blocks
+	 */
+	public function register_blocks() {
+		register_block_type( __DIR__ . '/build/blocks/area-routes' );
 	}
 
 	/**
