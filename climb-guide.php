@@ -35,6 +35,7 @@ class Climb_Guide {
 		// Add these new hooks.
 		add_action( 'save_post_climbing_area', [ $this, 'sync_area_to_taxonomy' ], 10, 3 );
 		add_filter( 'post_type_link', [ $this, 'modify_route_permalink' ], 10, 2 );
+		add_filter( 'post_type_link', [ $this, 'modify_area_permalink' ], 10, 2 );
 		add_action( 'init', [ $this, 'add_rewrite_rules' ], 20 );
 		add_action( 'admin_menu', [ $this, 'add_migration_menu' ] );
 
@@ -83,6 +84,8 @@ class Climb_Guide {
 				'rewrite'       => [
 					'slug'       => 'area',
 					'with_front' => false,
+					'feeds'      => false,
+					'pages'      => false,
 				],
 				'hierarchical'  => true,
 			]
@@ -253,19 +256,53 @@ class Climb_Guide {
 	}
 
 	/**
+	 * Modify the permalink structure for areas to include the full path
+	 *
+	 * @param string  $post_link The post's permalink.
+	 * @param WP_Post $post      The post in question.
+	 * @return string Modified permalink
+	 */
+	public function modify_area_permalink( $post_link, $post ) {
+		if ( 'climbing_area' !== $post->post_type ) {
+			return $post_link;
+		}
+
+		// Get all ancestors
+		$ancestors = get_post_ancestors( $post->ID );
+		if ( empty( $ancestors ) ) {
+			return $post_link;
+		}
+
+		// Reverse the array to get the correct order (root -> child)
+		$ancestors = array_reverse( $ancestors );
+		
+		// Build the path
+		$path = '';
+		foreach ( $ancestors as $ancestor ) {
+			$path .= get_post_field( 'post_name', $ancestor ) . '/';
+		}
+
+		// Add the current post's slug
+		$path .= $post->post_name;
+
+		// Replace the permalink
+		return home_url( "area/{$path}/" );
+	}
+
+	/**
 	 * Add custom rewrite rules
 	 */
 	public function add_rewrite_rules() {
-		// Rule for areas.
+		// Rule for nested areas - match any number of path segments
 		add_rewrite_rule(
-			'^area/([^/]+)/?$',
+			'^area/(.+?)/?$',
 			'index.php?climbing_area=$matches[1]',
 			'top'
 		);
 
-		// Rule for routes under areas.
+		// Rule for routes under areas
 		add_rewrite_rule(
-			'^area/([^/]+)/([^/]+)/?$',
+			'^area/(.+)/([^/]+)/?$',
 			'index.php?climbing_route=$matches[2]',
 			'top'
 		);
