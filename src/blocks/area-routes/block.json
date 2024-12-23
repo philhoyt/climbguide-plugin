@@ -5,9 +5,8 @@
 	"version": "0.1.0",
 	"title": "Area Routes",
 	"category": "widgets",
-	"icon": "smiley",
-	"description": "Example block scaffolded with Create Block tool.",
-	"example": {},
+	"icon": "list-view",
+	"description": "Display and order routes belonging to this area.",
 	"supports": {
 		"html": false
 	},
@@ -15,6 +14,36 @@
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
-	"render": "file:./render.php",
-	"viewScript": "file:./view.js"
+	"template": [
+		["core/query", {
+			"queryId": 1,
+			"query": {
+				"perPage": -1,
+				"postType": "climbing_route",
+				"inherit": true
+			}
+		}, [
+			["core/post-template", {}, [
+				["core/group", {
+					"className": "area-routes__item",
+					"layout": {"type": "flex", "orientation": "horizontal", "justifyContent": "stretch"}
+				}, [
+					["core/group", {
+						"className": "area-routes__drag-handle",
+						"layout": {"type": "flex", "orientation": "vertical", "justifyContent": "center"}
+					}, [
+						["core/paragraph", { "className": "drag-icon", "content": "⋮" }]
+					]],
+					["core/group", {
+						"className": "area-routes__content",
+						"layout": {"type": "flex", "orientation": "vertical"}
+					}, [
+						["core/post-featured-image", {"isLink": true}],
+						["core/post-title", {"level": 3, "isLink": true}],
+						["core/post-excerpt"]
+					]]
+				]]
+			]]
+		]]
+	]
 }
