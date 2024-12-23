@@ -26,22 +26,11 @@
 			["core/post-template", {}, [
 				["core/group", {
 					"className": "area-routes__item",
-					"layout": {"type": "flex", "orientation": "horizontal", "justifyContent": "stretch"}
+					"layout": {"type": "flex", "orientation": "vertical"}
 				}, [
-					["core/group", {
-						"className": "area-routes__drag-handle",
-						"layout": {"type": "flex", "orientation": "vertical", "justifyContent": "center"}
-					}, [
-						["core/paragraph", { "className": "drag-icon", "content": "⋮" }]
-					]],
-					["core/group", {
-						"className": "area-routes__content",
-						"layout": {"type": "flex", "orientation": "vertical"}
-					}, [
-						["core/post-featured-image", {"isLink": true}],
-						["core/post-title", {"level": 3, "isLink": true}],
-						["core/post-excerpt"]
-					]]
+					["core/post-featured-image", {"isLink": true}],
+					["core/post-title", {"level": 3, "isLink": true}],
+					["core/post-excerpt"]
 				]]
 			]]
 		]]
