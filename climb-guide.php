@@ -12,6 +12,11 @@
  * @package ClimbingGuide
  */
 
+ // TODO:
+ // - https://developer.wordpress.org/reference/functions/register_block_template/
+ // - https://developer.wordpress.org/news/2024/08/registering-block-templates-via-plugins-in-wordpress-6-7/
+ // - https://developer.wordpress.org/reference/functions/block_template_part/
+
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
@@ -114,7 +119,7 @@ class Climb_Guide {
 				'supports'      => [ 'title', 'editor', 'thumbnail', 'excerpt' ],
 				'menu_icon'     => 'dashicons-admin-site',
 				'rewrite'       => [
-					'slug'       => 'area/%route_area%',
+					'slug'       => 'route',
 					'with_front' => false,
 				],
 			]
@@ -245,14 +250,7 @@ class Climb_Guide {
 		if ( 'climbing_route' !== $post->post_type ) {
 			return $post_link;
 		}
-
-		$terms = wp_get_object_terms( $post->ID, 'route_area' );
-		if ( ! empty( $terms ) ) {
-			$area_slug = $terms[0]->slug;
-			return str_replace( '%route_area%', $area_slug, $post_link );
-		}
-
-		return str_replace( '/area/%route_area%/', '/area/', $post_link );
+		return $post_link; // Return default permalink
 	}
 
 	/**
@@ -297,13 +295,6 @@ class Climb_Guide {
 		add_rewrite_rule(
 			'^area/(.+?)/?$',
 			'index.php?climbing_area=$matches[1]',
-			'top'
-		);
-
-		// Rule for routes under areas
-		add_rewrite_rule(
-			'^area/(.+)/([^/]+)/?$',
-			'index.php?climbing_route=$matches[2]',
 			'top'
 		);
 	}
